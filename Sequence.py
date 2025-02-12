@@ -3,7 +3,7 @@ import math
 import sympy as sp
 
 
-def linear():
+def first_order():
     print("Let the equation be x_n = a*x_{n-1},  n starting from 1 ")
     a = float(input("a = ? "))
     x_i = (input('Whats a value in the sequence you know? [in "x_k=c" format]'))
@@ -11,13 +11,12 @@ def linear():
     c = float(x_i[1])
     sub = x_i[0].split('_')
     k = float(sub[1])
-    print(c)
-    print(k)
     x_0 = c/(a**k)
     print(f"General term: x_n = {a}^n*{x_0}")
+
     
 
-def quadratic():
+def second_order():
     print("Let the equation be x_n = a_1*x_{n-1} + a_2*x_{n-2}")
     
     try:
@@ -83,15 +82,42 @@ def quadratic():
         general_term = f"x_n = ({A1_val} * ({psi})^n) + ({A2_val} * ({phi})^n)"
         print(f"General solution: {general_term}")
 
-        
+
+def homo():
+    ans = input("Is it a first, second, third or fourth order sequence? [F/S/T/Q]").strip().upper()
+    
+    if ans == "F":
+        first_order()
+        return 0
+    elif ans == "S":
+        second_order()
+        return 0
+    elif ans == "T":
+        third_order()
+        return 0
+    elif ans == "Q":
+        fourth_order()
+        return 0
+    else:
+        print("Please input [F/S/T/Q]")
+    homo()
+
+def third_order():
+    print("Third-order recurrence selected.")
+
+def fourth_order():
+    print("Fourth-order recurrence selected.")
 
 
-        
 
-
-
+def non_homo():
+    print("Non-homogeneous recurrence selected.")    
 
 def main():
-    quadratic()
+    ans = input("What type of recurrence relation doy you have in mind? Homogeneous or Non Homogeneous [H/N]").strip().upper()
+    if ans == "H":
+        homo()
+    elif ans == "N":
+        non_homo()
 
 main()
